@@ -2,6 +2,95 @@
 
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AuthController;
+
+Route::prefix('')->group(function () {
+    Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('backend.register');
+    Route::post('/register', [AuthController::class, 'register'])->name('register');
+
+    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('backend.login');
+    Route::post('/login', [AuthController::class, 'login'])->name('login');
+
+    Route::post('/logout', [AuthController::class, 'logout'])->name('backend.logout');
+
+    Route::middleware('auth')->group(function () {
+        Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+    });
+});
+
+// This should also be protected by the auth middleware
+Route::middleware('auth')->get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Home route
 Route::get('/', [HomeController::class, 'home'])->name('home');
