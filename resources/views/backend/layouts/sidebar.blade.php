@@ -5,14 +5,14 @@
           <!--begin::Brand Link-->
           <a href="./index.html" class="brand-link">
             <!--begin::Brand Image-->
-            <img
-              src="../../dist/assets/img/AdminLTELogo.png"
+            <img src="{{ asset('assets/img/logo1.jpeg') }}" 
+
               alt="AdminLTE Logo"
               class="brand-image opacity-75 shadow"
             />
             <!--end::Brand Image-->
             <!--begin::Brand Text-->
-            <span class="brand-text fw-light">AdminLTE 4</span>
+            <span class="brand-text fw-light">Krinoscco</span>
             <!--end::Brand Text-->
           </a>
           <!--end::Brand Link-->
@@ -38,12 +38,12 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="./index.html" class="nav-link active">
+                    <a href="{{route('backend.hero.index')}}" class="nav-link active">
                       <i class="nav-icon bi bi-circle"></i>
-                      <p>Dashboard v1</p>
+                      <p>Hero Section</p>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  {{-- <li class="nav-item">
                     <a href="./index3.html" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Dashboard</p>
@@ -434,7 +434,7 @@
                   <p>Informational</p>
                 </a>
               </li>
-            </ul>
+            </ul> --}}
             <!--end::Sidebar Menu-->
           </nav>
         </div>

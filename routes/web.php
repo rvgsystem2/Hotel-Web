@@ -4,6 +4,19 @@ use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HeroSectionController;
+
+Route::middleware(['auth'])->group(function () {
+    Route::resource('hero', HeroSectionController::class)->names([
+        'index' => 'backend.hero.index',
+        'create' => 'backend.hero.create',
+        'store' => 'backend.hero.store',
+        'edit' => 'backend.hero.edit',
+        'update' => 'backend.hero.update',
+        'destroy' => 'backend.hero.destroy',
+    ]);
+});
+
 
 Route::prefix('')->group(function () {
     Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('backend.register');
