@@ -3,13 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\HeroSection;
+
 
 class HomeController extends Controller
 {
-    public function home()
-    {
-        return view('frontend.index');
-    }
+    
+      public function home()
+        {  
+            $heroSection = HeroSection::first() ?? new HeroSection(); 
+            return view('frontend.index', compact('heroSection'));
+        }
+        
+ 
+    
 
     public function about()
     {

@@ -7,12 +7,14 @@ use App\Http\Controllers\Controller;
 
 class HeroSectionController extends Controller
 {
-    public function index()
-    {
-        $heroSections = HeroSection::all();
-        // dd($heroSections);
-        return view('backend.hero.index', compact('heroSections'));
-    }
+   
+        public function index()
+        {
+            $heroSections = HeroSection::all(); // Use plural to avoid confusion
+            return view('backend.hero.index', compact('heroSections'));
+        }
+        
+    
 
     public function create()
     {

@@ -114,8 +114,10 @@
     <section class="relative h-screen overflow-hidden">
         <!-- Video Background with improved loading -->
         <video autoplay muted loop playsinline class="absolute w-full h-full object-cover filter brightness-75">
-            <source src="{{ asset('asset/images/Hotel HK.mp4') }}" type="video/mp4">
-        </video>
+            <source src="{{ asset('storage/' . ($heroSection->video ?? 'default-video.mp4')) }}" type="video/mp4">
+            </video>
+        
+        
 
         <!-- Enhanced glass effect overlay -->
         <div class="absolute inset-0 "></div>
@@ -124,20 +126,20 @@
         <div class="relative container mx-auto px-6 md:px-12 h-full flex flex-col justify-center">
             <div class="max-w-4xl text-white transform transition-all duration-700 opacity-100">
                 <h1 class="text-6xl md:text-7xl font-bold mb-6 leading-tight tracking-tight drop-shadow-lg">
-                    Experience Luxury
+                    {{ $heroSection->title ?? 'Default Title' }} 
                     <span class="text-[#8B4513] block hover:text-[#9B5523] transition-colors duration-300">Redefined</span>
                 </h1>
                 <p class="text-lg md:text-xl mb-8 text-gray-200 font-light leading-relaxed tracking-wide">
-                    Where timeless elegance meets modern innovation
+                    {{ $heroSection->description ?? 'Default Description' }}
                 </p>
 
                 <!-- Enhanced Button Container -->
                 <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6">
-                    <a href="#booking"
+                    <a href="{{$heroSection->button_link ??''}}"
                         class="ripple-button bg-[#8B4513] text-white px-10 py-4 rounded-lg text-lg font-semibold hover:bg-[#6B3410] transition-all duration-300 transform hover:scale-105 hover:shadow-xl active:scale-95">
                         Book Now
                     </a>
-                    <a href="#virtual-tour"
+                    <a href=" {{ $heroSection->button_text ?? '' }}"
                         class="ripple-button bg-transparent border-2 border-white text-white px-10 py-4 rounded-lg text-lg font-semibold hover:bg-white/10 hover:text-white transition-all duration-300 transform hover:scale-105 hover:shadow-xl active:scale-95">
                         Virtual Tour
                     </a>

@@ -43,15 +43,15 @@
                       <p>Hero Section</p>
                     </a>
                   </li>
-                  {{-- <li class="nav-item">
-                    <a href="./index3.html" class="nav-link">
+                   <li class="nav-item">
+                    <a href="{{route('backend.about.index')}}" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
-                      <p>Dashboard</p>
+                      <p>About</p>
                     </a>
                   </li>
                 </ul>
               </li>
-              <li class="nav-item">
+              {{-- <li class="nav-item">
                 <a href="./generate/theme.html" class="nav-link">
                   <i class="nav-icon bi bi-palette"></i>
                   <p>Theme Generate</p>
@@ -434,7 +434,7 @@
                   <p>Informational</p>
                 </a>
               </li>
-            </ul> --}}
+            </ul> --}} 
             <!--end::Sidebar Menu-->
           </nav>
         </div>

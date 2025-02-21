@@ -6,6 +6,19 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HeroSectionController;
 
+use App\Http\Controllers\AboutSectionController;
+
+
+Route::prefix('backend')->middleware(['auth'])->group(function () {
+    Route::get('/about', [AboutSectionController::class, 'index'])->name('backend.about.index');
+    Route::get('/about/create', [AboutSectionController::class, 'create'])->name('backend.about.create');
+    Route::post('/about/store', [AboutSectionController::class, 'store'])->name('backend.about.store');
+    Route::get('/about/edit/{about}', [AboutSectionController::class, 'edit'])->name('backend.about.edit');
+    Route::put('/about/update/{about}', [AboutSectionController::class, 'update'])->name('backend.about.update');
+    Route::delete('/about/destroy/{about}', [AboutSectionController::class, 'destroy'])->name('backend.about.destroy');
+});
+
+
 Route::middleware(['auth'])->group(function () {
     Route::resource('hero', HeroSectionController::class)->names([
         'index' => 'backend.hero.index',
