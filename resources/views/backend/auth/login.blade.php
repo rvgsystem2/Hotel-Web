@@ -3,7 +3,7 @@
   <!--begin::Head-->
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>AdminLTE 4 | Login Page v2</title>
+    <title>Login</title>
     <!--begin::Primary Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="title" content="AdminLTE 4 | Login Page v2" />
@@ -55,7 +55,7 @@
             href="../index2.html"
             class="link-dark text-center link-offset-2 link-opacity-100 link-opacity-50-hover"
           >
-            <h1 class="mb-0"><b>Admin</b>LTE</h1>
+            <h1 class="mb-0"><b>Hotel</b>Admin</h1>
           </a>
         </div>
         <div class="card-body login-card-body">
