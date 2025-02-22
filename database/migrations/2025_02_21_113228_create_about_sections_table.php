@@ -11,6 +11,8 @@ return new class extends Migration {
             $table->text('description');
             $table->string('main_image');
             $table->text('gallery_images'); // Store as comma-separated values
+            $table->text('prime'); // Store as text
+            $table->text('quick_access'); // Store as text
             $table->timestamps();
         });
     }
