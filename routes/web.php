@@ -8,6 +8,14 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HeroSectionController;
 use App\Http\Controllers\AboutSectionController;
 
+use App\Http\Controllers\SmartServiceController;
+
+Route::prefix('backend')->middleware(['auth'])->name('backend.')->group(function () {
+    Route::resource('smart_services', SmartServiceController::class);
+});
+
+
+
 Route::prefix('backend')->middleware(['auth'])->group(function () {
     // About Section Routes
     Route::get('/about', [AboutSectionController::class, 'index'])->name('backend.about.index');

@@ -1,27 +1,29 @@
 @extends('backend.layouts.app')
 
 @section('content')
-<div class="col-md-12">
-    <div class="card card-primary card-outline mb-4">
-        <div class="card-header d-flex justify-content-between align-items-center">
-            <h5 class="card-title">About Sections</h5>
-            <a href="{{ route('backend.about.create') }}" class="btn btn-primary">Add New</a>
+<div class="container-fluid">
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">About Sections</h5>
+            <div class="ms-auto">
+                <a href="{{ route('backend.about.create') }}" class="btn btn-dark btn-sm">Add New</a>
+            </div>
         </div>
         <div class="card-body">
             @if($sections->isEmpty())
                 <div class="alert alert-warning text-center">No About Sections found.</div>
             @else
                 <div class="table-responsive">
-                    <table class="table table-bordered">
-                        <thead class="table-dark">
+                    <table class="table table-hover align-middle">
+                        <thead class="table-light">
                             <tr>
-                                <th style="width: 15%;">Title</th>
-                                <th style="width: 25%;">Description</th>
+                                <th>Title</th>
+                                <th>Description</th>
                                 <th>Main Image</th>
                                 <th>Gallery Images</th>
                                 <th>Quick Access</th>
                                 <th>Prime</th>
-                                <th>Actions</th>
+                                <th class="text-center">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -35,7 +37,7 @@
                                 </td>
                                 <td>
                                     @if ($section->main_image)
-                                        <img src="{{ asset('storage/' . $section->main_image) }}" width="100" class="img-thumbnail">
+                                        <img src="{{ asset('storage/' . $section->main_image) }}" width="80" class="img-thumbnail">
                                     @else
                                         <span class="text-muted">No Image</span>
                                     @endif
@@ -44,23 +46,25 @@
                                     @php
                                         $galleryImages = is_string($section->gallery_images) ? explode(',', $section->gallery_images) : (is_array($section->gallery_images) ? $section->gallery_images : []);
                                     @endphp
-                                    @if (!empty($galleryImages))
-                                        @foreach ($galleryImages as $image)
-                                            @if (!empty($image))
-                                                <img src="{{ asset('storage/' . trim($image)) }}" width="50" class="img-thumbnail mb-1">
-                                            @endif
-                                        @endforeach
-                                    @else
-                                        <span class="text-muted">No Images</span>
-                                    @endif
+                                    <div class="d-flex flex-wrap gap-1">
+                                        @if (!empty($galleryImages))
+                                            @foreach ($galleryImages as $image)
+                                                @if (!empty($image))
+                                                    <img src="{{ asset('storage/' . trim($image)) }}" width="50" class="img-thumbnail">
+                                                @endif
+                                            @endforeach
+                                        @else
+                                            <span class="text-muted">No Images</span>
+                                        @endif
+                                    </div>
                                 </td>
                                 <td>{{ $section->quick_access }}</td>
                                 <td>{{ $section->prime }}</td>
-                                <td>
-                                    <a href="{{ route('backend.about.edit', $section->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                                <td class="text-center">
+                                    <a href="{{ route('backend.about.edit', $section->id) }}" class="btn btn-secondary btn-sm">Edit</a>
                                     <form action="{{ route('backend.about.destroy', $section->id) }}" method="POST" class="d-inline delete-form">
                                         @csrf @method('DELETE')
-                                        <button type="button" class="btn btn-sm btn-danger delete-btn">Delete</button>
+                                        <button type="button" class="btn btn-danger btn-sm delete-btn">Delete</button>
                                     </form>
                                 </td>
                             </tr>
@@ -86,7 +90,7 @@
                     icon: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#d33",
-                    cancelButtonColor: "#3085d6",
+                    cancelButtonColor: "#6c757d",
                     confirmButtonText: "Yes, delete it!"
                 }).then((result) => {
                     if (result.isConfirmed) {

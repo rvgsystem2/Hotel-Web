@@ -4,50 +4,46 @@
 <div class="container-fluid">
     <div class="card shadow-sm border-0 mb-4">
         <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
-            <h5 class="mb-0">Hero Sections</h5>
+            <h5 class="mb-0">Smart Services</h5>
             <div class="ms-auto">
-                <a href="{{ route('backend.hero.create') }}" class="btn btn-dark btn-sm">Add Hero Section</a>
+                <a href="{{ route('backend.smart_services.create') }}" class="btn btn-dark btn-sm">Add New Service</a>
             </div>
         </div>
         <div class="card-body">
-            @if($heroSections->isEmpty())
-                <div class="alert alert-warning text-center">No Hero Sections found.</div>
+            @if(session('success'))
+                <div class="alert alert-success text-center">{{ session('success') }}</div>
+            @endif
+
+            @if($services->isEmpty())
+                <div class="alert alert-warning text-center">No Smart Services found.</div>
             @else
                 <div class="table-responsive">
                     <table class="table table-hover align-middle">
                         <thead class="table-light">
                             <tr>
+                                <th>ID</th>
                                 <th>Title</th>
-                                <th>Description</th>
-                                <th>Button Text</th>
-                                <th>Button Link</th>
-                                <th>Video</th>
+                                <th>Icon</th>
+                                <th>Image</th>
                                 <th class="text-center">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($heroSections as $hero)
+                            @foreach ($services as $service)
                             <tr>
-                                <td>{{ $hero->title }}</td>
+                                <td>{{ $service->id }}</td>
+                                <td>{{ $service->title }}</td>
+                                <td><i class="{{ $service->icon }}"></i></td>
                                 <td>
-                                    <span data-bs-toggle="tooltip" title="{{ $hero->description }}">
-                                        {{ Str::limit($hero->description, 50) }}
-                                    </span>
-                                </td>
-                                <td>{{ $hero->button_text }}</td>
-                                <td>{{ $hero->button_link }}</td>
-                                <td>
-                                    @if ($hero->video)
-                                        <video width="100" controls>
-                                            <source src="{{ asset('storage/' . $hero->video) }}" type="video/mp4">
-                                        </video>
+                                    @if ($service->image && file_exists(public_path('storage/' . $service->image)))
+                                        <img src="{{ asset('storage/' . $service->image) }}" width="50" class="img-thumbnail">
                                     @else
-                                        <span class="text-muted">No Video</span>
+                                        <img src="{{ asset('default.png') }}" width="50" class="img-thumbnail"> <!-- Default Image -->
                                     @endif
                                 </td>
                                 <td class="text-center">
-                                    <a href="{{ route('backend.hero.edit', $hero->id) }}" class="btn btn-secondary btn-sm">Edit</a>
-                                    <form action="{{ route('backend.hero.destroy', $hero->id) }}" method="POST" class="d-inline delete-form">
+                                    <a href="{{ route('backend.smart_services.edit', $service->id) }}" class="btn btn-secondary btn-sm">Edit</a>
+                                    <form action="{{ route('backend.smart_services.destroy', $service->id) }}" method="POST" class="d-inline delete-form">
                                         @csrf @method('DELETE')
                                         <button type="button" class="btn btn-danger btn-sm delete-btn">Delete</button>
                                     </form>
@@ -84,14 +80,6 @@
                 });
             });
         });
-
-        // Initialize Bootstrap tooltips
-        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-        if (tooltipTriggerList.length) {
-            tooltipTriggerList.forEach(function (tooltipTriggerEl) {
-                new bootstrap.Tooltip(tooltipTriggerEl);
-            });
-        }
     });
 </script>
 

@@ -2,10 +2,12 @@
 
 @section('content')
 <div class="col-md-12">
-    <div class="card card-primary card-outline mb-4">
-        <div class="card-header">
-            <div class="card-title">Create About Section</div>
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Create About Section</h5>
         </div>
+
+    
         <form action="{{ route('backend.about.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="card-body">

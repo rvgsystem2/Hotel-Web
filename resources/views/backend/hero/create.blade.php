@@ -2,11 +2,9 @@
 
 @section('content')
 <div class="col-md-12">
-    <!--begin::Quick Example-->
-    <div class="card card-primary card-outline mb-4">
-        <!--begin::Header-->
-        <div class="card-header">
-            <div class="card-title">Hero Section</div>
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Create Hero Section</h5>
         </div>
         <!--end::Header-->
         

@@ -49,6 +49,12 @@
                       <p>About</p>
                     </a>
                   </li>
+                  <li class="nav-item">
+                    <a href="{{route('backend.smart_services.index')}}" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Smart Services</p>
+                    </a>
+                  </li>
                 </ul>
               </li>
               {{-- <li class="nav-item">
