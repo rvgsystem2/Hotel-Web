@@ -35,7 +35,7 @@
                         <td>
                             <img src="{{ asset('storage/' . $experience->image) }}" alt="Image" class="img-thumbnail rounded" width="80" height="50">
                         </td>
-                        <td>{{ Str::limit($experience->short_description, 50) }}</td>
+                        <td>{{ Str::limit($experience->short_description, 150) }}</td>
                         <td>{{ $experience->button_text ?? 'N/A' }}</td>
                         <td>
                             @if($experience->button_link)

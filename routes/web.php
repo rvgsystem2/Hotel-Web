@@ -12,6 +12,20 @@ use App\Http\Controllers\SmartServiceController;
 
 use App\Http\Controllers\ExperienceController;
 
+use App\Http\Controllers\InfoCardController;
+
+
+
+Route::prefix('backend/info_cards')->group(function () {
+    Route::get('/', [InfoCardController::class, 'index'])->name('backend.info_cards.index');
+    Route::get('/create', [InfoCardController::class, 'create'])->name('backend.info_cards.create');
+    Route::post('/store', [InfoCardController::class, 'store'])->name('backend.info_cards.store');
+    Route::get('/edit/{infoCard}', [InfoCardController::class, 'edit'])->name('backend.info_cards.edit');
+    Route::put('/update/{infoCard}', [InfoCardController::class, 'update'])->name('backend.info_cards.update');
+    Route::delete('/delete/{infoCard}', [InfoCardController::class, 'destroy'])->name('backend.info_cards.destroy');
+});
+
+
 Route::prefix('backend/experiences')->group(function () {
     Route::get('/', [ExperienceController::class, 'index'])->name('backend.experiences.index');
     Route::get('/create', [ExperienceController::class, 'create'])->name('backend.experiences.create');
