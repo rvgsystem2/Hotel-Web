@@ -10,6 +10,22 @@ use App\Http\Controllers\AboutSectionController;
 
 use App\Http\Controllers\SmartServiceController;
 
+use App\Http\Controllers\ExperienceController;
+
+Route::prefix('backend/experiences')->group(function () {
+    Route::get('/', [ExperienceController::class, 'index'])->name('backend.experiences.index');
+    Route::get('/create', [ExperienceController::class, 'create'])->name('backend.experiences.create');
+    Route::post('/store', [ExperienceController::class, 'store'])->name('backend.experiences.store');
+    Route::get('/edit/{experience}', [ExperienceController::class, 'edit'])->name('backend.experiences.edit');
+    Route::put('/update/{experience}', [ExperienceController::class, 'update'])->name('backend.experiences.update');
+    Route::delete('/delete/{experience}', [ExperienceController::class, 'destroy'])->name('backend.experiences.destroy');
+});
+
+
+
+
+
+
 Route::prefix('backend')->middleware(['auth'])->name('backend.')->group(function () {
     Route::resource('smart_services', SmartServiceController::class);
 });
