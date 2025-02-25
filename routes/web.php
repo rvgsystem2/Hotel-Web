@@ -12,6 +12,20 @@ use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\InfoCardController;
 use App\Http\Controllers\HotelOfferingController;
 use App\Http\Controllers\TestimonialController;
+use App\Http\Controllers\ContactController;
+
+Route::prefix('backend/contact')->group(function () {
+    Route::get('/', [ContactController::class, 'index'])->name('backend.contact.index');
+    Route::get('/create', [ContactController::class, 'create'])->name('backend.contact.create');
+    Route::post('/store', [ContactController::class, 'store'])->name('backend.contact.store');
+    Route::get('/edit/{contact}', [ContactController::class, 'edit'])->name('backend.contact.edit');
+    Route::put('/update/{contact}', [ContactController::class, 'update'])->name('backend.contact.update');
+    Route::delete('/delete/{contact}', [ContactController::class, 'destroy'])->name('backend.contact.destroy');
+});
+
+
+
+
 
 
 Route::prefix('backend/testimonial')->group(function () {
