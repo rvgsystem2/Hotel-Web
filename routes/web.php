@@ -7,12 +7,13 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HeroSectionController;
 use App\Http\Controllers\AboutSectionController;
-
 use App\Http\Controllers\SmartServiceController;
-
 use App\Http\Controllers\ExperienceController;
-
 use App\Http\Controllers\InfoCardController;
+use App\Http\Controllers\HotelOfferingController;
+
+
+
 
 
 
@@ -24,6 +25,16 @@ Route::prefix('backend/info_cards')->group(function () {
     Route::put('/update/{infoCard}', [InfoCardController::class, 'update'])->name('backend.info_cards.update');
     Route::delete('/delete/{infoCard}', [InfoCardController::class, 'destroy'])->name('backend.info_cards.destroy');
 });
+
+Route::prefix('backend/hotel_offerings')->group(function () {
+    Route::get('/', [HotelOfferingController::class, 'index'])->name('backend.hotel_offerings.index');
+    Route::get('/create', [HotelOfferingController::class, 'create'])->name('backend.hotel_offerings.create');
+    Route::post('/store', [HotelOfferingController::class, 'store'])->name('backend.hotel_offerings.store');
+    Route::get('/edit/{hotelOffering}', [HotelOfferingController::class, 'edit'])->name('backend.hotel_offerings.edit');
+    Route::put('/update/{hotelOffering}', [HotelOfferingController::class, 'update'])->name('backend.hotel_offerings.update');
+    Route::delete('/delete/{hotelOffering}', [HotelOfferingController::class, 'destroy'])->name('backend.hotel_offerings.destroy');
+});
+
 
 
 Route::prefix('backend/experiences')->group(function () {
