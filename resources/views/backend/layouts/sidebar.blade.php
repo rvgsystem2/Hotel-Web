@@ -74,6 +74,13 @@
                     </a>
                   </li>
 
+                  <li class="nav-item">
+                    <a href="{{route('backend.testimonial.index')}}" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Testimonial</p>
+                    </a>
+                  </li>
+
                 </ul>
               </li>
               {{-- <li class="nav-item">

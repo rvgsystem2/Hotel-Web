@@ -11,7 +11,17 @@ use App\Http\Controllers\SmartServiceController;
 use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\InfoCardController;
 use App\Http\Controllers\HotelOfferingController;
+use App\Http\Controllers\TestimonialController;
 
+
+Route::prefix('backend/testimonial')->group(function () {
+    Route::get('/', [TestimonialController::class, 'index'])->name('backend.testimonial.index');
+    Route::get('/create', [TestimonialController::class, 'create'])->name('backend.testimonial.create');
+    Route::post('/store', [TestimonialController::class, 'store'])->name('backend.testimonial.store');
+    Route::get('/edit/{testimonial}', [TestimonialController::class, 'edit'])->name('backend.testimonial.edit');
+    Route::put('/update/{testimonial}', [TestimonialController::class, 'update'])->name('backend.testimonial.update');
+    Route::delete('/delete/{testimonial}', [TestimonialController::class, 'destroy'])->name('backend.testimonial.destroy');
+});
 
 
 
