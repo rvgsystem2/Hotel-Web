@@ -14,6 +14,20 @@ use App\Http\Controllers\HotelOfferingController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\ContactController;
 
+
+
+use App\Http\Controllers\FaqController;
+
+Route::prefix('backend/faq')->group(function () {
+    Route::get('/', [FaqController::class, 'index'])->name('backend.faq.index');
+    Route::get('/create', [FaqController::class, 'create'])->name('backend.faq.create');
+    Route::post('/store', [FaqController::class, 'store'])->name('backend.faq.store');
+    Route::get('/edit/{faq}', [FaqController::class, 'edit'])->name('backend.faq.edit');
+    Route::put('/update/{faq}', [FaqController::class, 'update'])->name('backend.faq.update');
+    Route::delete('/delete/{faq}', [FaqController::class, 'destroy'])->name('backend.faq.destroy');
+});
+
+
 Route::prefix('backend/contact')->group(function () {
     Route::get('/', [ContactController::class, 'index'])->name('backend.contact.index');
     Route::get('/create', [ContactController::class, 'create'])->name('backend.contact.create');

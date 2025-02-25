@@ -2,59 +2,38 @@
 
 @section('content')
 <div class="container-fluid">
-    
-    <div class="container-fluid">
-        <div class="card shadow-sm border-0 mb-4">
-            <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
-                <h5 class="mb-0">Manage Experiences</h5>
-                <div class="ms-auto">
-                    <a href="{{ route('backend.faq.create') }}" class="btn btn-dark btn-sm">Add New</a>
-                </div>
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">FAQs</h5>
+            <div class="ms-auto">
+                <a href="{{ route('backend.faq.create') }}" class="btn btn-dark btn-sm">Add New</a>
             </div>
-
+        </div>
         <div class="card-body">
-            @if(session('success'))
-                <div class="alert alert-success text-center">{{ session('success') }}</div>
-            @endif
-
-            @if($experiences->isEmpty())
-                <div class="alert alert-warning text-center">No Experiences found.</div>
+            @if($faqs->isEmpty())
+                <div class="alert alert-warning text-center">No FAQs found.</div>
             @else
                 <div class="table-responsive">
                     <table class="table table-hover align-middle">
                         <thead class="table-light">
                             <tr>
-                                <th>Title</th>
-                                <th>Image</th>
-                                <th>Short Description</th>
-                                <th>Button Text</th>
-                                <th>Button Link</th>
+                                <th>Question</th>
+                                <th>Answer</th>
                                 <th class="text-center">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($experiences as $experience)
+                            @foreach ($faqs as $faq)
                             <tr>
-                                <td>{{ $experience->title }}</td>
+                                <td>{{ $faq->question }}</td>
                                 <td>
-                                    <img src="{{ asset('storage/' . $experience->image) }}" alt="Image" class="img-thumbnail rounded" width="60" height="40">
-                                </td>
-                                <td>
-                                    <span data-bs-toggle="tooltip" title="{{ $experience->short_description }}">
-                                        {{ Str::limit($experience->short_description, 50) }}
+                                    <span data-bs-toggle="tooltip" title="{{ $faq->answer }}">
+                                        {{ Str::limit($faq->answer, 50) }}
                                     </span>
                                 </td>
-                                <td>{{ $experience->button_text ?? 'N/A' }}</td>
-                                <td>
-                                    @if($experience->button_link)
-                                        <a href="{{ $experience->button_link }}" target="_blank" class="btn btn-outline-primary btn-sm">Visit</a>
-                                    @else
-                                        <span class="text-muted">N/A</span>
-                                    @endif
-                                </td>
                                 <td class="text-center">
-                                    <a href="{{ route('backend.experiences.edit', $experience->id) }}" class="btn btn-secondary btn-sm">Edit</a>
-                                    <form action="{{ route('backend.experiences.destroy', $experience->id) }}" method="POST" class="d-inline delete-form">
+                                    <a href="{{ route('backend.faq.edit', $faq->id) }}" class="btn btn-secondary btn-sm">Edit</a>
+                                    <form action="{{ route('backend.faq.destroy', $faq->id) }}" method="POST" class="d-inline delete-form">
                                         @csrf @method('DELETE')
                                         <button type="button" class="btn btn-danger btn-sm delete-btn">Delete</button>
                                     </form>
@@ -74,7 +53,7 @@
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll(".delete-btn").forEach(button => {
             button.addEventListener("click", function (event) {
-                event.preventDefault();
+                event.preventDefault(); // Prevent immediate form submission
 
                 Swal.fire({
                     title: "Are you sure?",
