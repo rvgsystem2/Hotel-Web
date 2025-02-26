@@ -90,7 +90,7 @@
                   <li class="nav-item">
                     <a href="{{route('backend.faq.index')}}" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
-                      <p>FAQ</p>
+                      <p>FAQs</p>
                     </a>
                   </li>
                 </ul>

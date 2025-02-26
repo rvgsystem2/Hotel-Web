@@ -174,11 +174,11 @@
             <!--begin::Menu Body-->
             <li class="user-body">
               <!--begin::Row-->
-              <div class="row">
+              {{-- <div class="row">
                 <div class="col-4 text-center"><a href="#">Followers</a></div>
                 <div class="col-4 text-center"><a href="#">Sales</a></div>
                 <div class="col-4 text-center"><a href="#">Friends</a></div>
-              </div>
+              </div> --}}
               <!--end::Row-->
             </li>
             <!--end::Menu Body-->
