@@ -13,10 +13,46 @@ use App\Http\Controllers\InfoCardController;
 use App\Http\Controllers\HotelOfferingController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\ContactController;
-
-
-
 use App\Http\Controllers\FaqController;
+use App\Http\Controllers\RoomTypeController;
+use App\Http\Controllers\HotelController;
+
+use App\Http\Controllers\RoomController;
+
+Route::prefix('backend/rooms')->middleware('auth')->group(function () {
+    Route::get('', [RoomController::class, 'index'])->name('backend.rooms.index'); // Removed '/' before ''
+    Route::get('create', [RoomController::class, 'create'])->name('backend.rooms.create');
+    Route::post('store', [RoomController::class, 'store'])->name('backend.rooms.store');
+    Route::get('edit/{room}', [RoomController::class, 'edit'])->name('backend.rooms.edit');
+    Route::put('update/{room}', [RoomController::class, 'update'])->name('backend.rooms.update');
+    Route::delete('delete/{room}', [RoomController::class, 'destroy'])->name('backend.rooms.destroy');
+});
+
+
+
+Route::prefix('backend/hotels')->middleware('auth')->group(function () {
+    Route::get('/', [HotelController::class, 'index'])->name('backend.hotels.index');
+    Route::get('/create', [HotelController::class, 'create'])->name('backend.hotels.create');
+    Route::post('/store', [HotelController::class, 'store'])->name('backend.hotels.store');
+    Route::get('/edit/{hotel}', [HotelController::class, 'edit'])->name('backend.hotels.edit');
+    Route::put('/update/{hotel}', [HotelController::class, 'update'])->name('backend.hotels.update');
+    Route::delete('/delete/{hotel}', [HotelController::class, 'destroy'])->name('backend.hotels.destroy');
+});
+
+
+Route::prefix('backend/room_types')->middleware('auth')->group(function () {
+    Route::get('/', [RoomTypeController::class, 'index'])->name('backend.room_types.index');
+    Route::get('/create', [RoomTypeController::class, 'create'])->name('backend.room_types.create');
+    Route::post('/store', [RoomTypeController::class, 'store'])->name('backend.room_types.store');
+    Route::get('/edit/{roomType}', [RoomTypeController::class, 'edit'])->name('backend.room_types.edit');
+    Route::put('/update/{roomType}', [RoomTypeController::class, 'update'])->name('backend.room_types.update');
+    Route::delete('/delete/{roomType}', [RoomTypeController::class, 'destroy'])->name('backend.room_types.destroy');
+});
+
+
+
+
+
 
 Route::prefix('backend/faq')->group(function () {
     Route::get('/', [FaqController::class, 'index'])->name('backend.faq.index');

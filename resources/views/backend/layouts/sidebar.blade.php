@@ -38,9 +38,27 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="{{route('backend.hero.index')}}" class="nav-link active">
+                    <a href="{{route('backend.hotels.index')}}" class="nav-link ">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Hotels</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{route('backend.hero.index')}}" class="nav-link ">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Hero Section</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{route('backend.room_types.index')}}" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Room Types</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{route('backend.rooms.index')}}" class="nav-link ">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Rooms</p>
                     </a>
                   </li>
                    <li class="nav-item">
@@ -93,6 +111,7 @@
                       <p>FAQs</p>
                     </a>
                   </li>
+                  
                 </ul>
               </li>
               {{-- <li class="nav-item">
