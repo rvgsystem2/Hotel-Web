@@ -61,6 +61,25 @@
                       <p>Rooms</p>
                     </a>
                   </li>
+                  <li class="nav-item">
+                    <a href="{{route('backend.room_facilities.index')}}" class="nav-link ">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Room Facilites</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{route('backend.bookings.index')}}" class="nav-link ">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Booking</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{route('backend.guests.index')}}" class="nav-link ">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Guest</p>
+                    </a>
+                  </li>
+
                    <li class="nav-item">
                     <a href="{{route('backend.about.index')}}" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
