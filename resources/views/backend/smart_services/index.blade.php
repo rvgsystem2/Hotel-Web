@@ -25,6 +25,10 @@
                                 <th>Title</th>
                                 <th>Icon</th>
                                 <th>Image</th>
+                                <th>Description</th>
+                                <th>Badge Text</th>
+                                <th>Badge Color</th>
+                                <th>CTA Text</th>
                                 <th class="text-center">Actions</th>
                             </tr>
                         </thead>
@@ -41,6 +45,10 @@
                                         <img src="{{ asset('default.png') }}" width="50" class="img-thumbnail"> <!-- Default Image -->
                                     @endif
                                 </td>
+                                <td>{{ $service->description}}</td>
+                                <td>{{ $service->badge_text }}</td>
+                                <td>{{ $service->badge_color}}</td>
+                                <td>{{ $service->cta_text}}</td>
                                 <td class="text-center">
                                     <a href="{{ route('backend.smart_services.edit', $service->id) }}" class="btn btn-secondary btn-sm">Edit</a>
                                     <form action="{{ route('backend.smart_services.destroy', $service->id) }}" method="POST" class="d-inline delete-form">

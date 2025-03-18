@@ -158,7 +158,7 @@
 
 
     <!-- About Section -->
-    <section class="relative py-32 overflow-hidden bg-gradient-to-b from-white to-gray-50">
+    {{-- <section class="relative py-32 overflow-hidden bg-gradient-to-b from-white to-gray-50">
         <!-- Decorative Elements -->
         <div
             class="absolute top-0 left-0 w-64 h-64 bg-[#8B4513] opacity-5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2">
@@ -213,7 +213,7 @@
                             <span class="text-[#8B4513] font-semibold uppercase tracking-wider">About Us</span>
                         </div>
                         <h2 class="text-4xl lg:text-5xl font-bold text-[#1a1a2e] leading-tight">
-                            Where Every Moment
+                            {{ $aboutSection->title ?? 'Default Title' }}
                             <span class="relative">Resonates
                                 <div class="absolute bottom-0 left-0 w-full h-[8px] bg-[#8B4513]/20"></div>
                             </span> Luxury
@@ -275,7 +275,125 @@
                 </div>
             </div>
         </div>
+    </section> --}}
+    @foreach($aboutSections as $aboutSection)
+    <section class="relative py-32 overflow-hidden bg-gradient-to-b from-white to-gray-50">
+        <!-- Decorative Elements -->
+        <div class="absolute top-0 left-0 w-64 h-64 bg-[#8B4513] opacity-5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+        <div class="absolute bottom-0 right-0 w-96 h-96 bg-[#1a1a2e] opacity-5 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
+
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center gap-16 relative">
+                
+                <!-- Image Section -->
+                <div class="w-full lg:w-1/2 space-y-6 group">
+                    <!-- Main Image -->
+                    <div class="relative overflow-hidden rounded-2xl shadow-2xl transform transition-transform duration-500 hover:scale-[1.02]">
+                        <div class="absolute inset-0 bg-gradient-to-r from-[#1a1a2e]/20 to-transparent z-10"></div>
+                        @php
+                            $mainImagePath = $aboutSection->main_image ? asset('storage/' . $aboutSection->main_image) : asset('asset/images/default.jpg');
+                        @endphp
+                        <img id="main-image-{{ $aboutSection->id }}" 
+                             src="{{ $mainImagePath }}" 
+                             alt="{{ $aboutSection->title }}" 
+                             class="w-full h-[500px] object-cover transform transition-transform duration-700 hover:scale-110" />
+                        <!-- Floating Badge -->
+                        <div class="absolute top-6 right-6 bg-white/90 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg z-20">
+                            <span class="text-[#1a1a2e] font-semibold">Est. 2024</span>
+                        </div>
+                    </div>
+
+                    <!-- Image Gallery -->
+                    <div class="grid grid-cols-3 gap-4">
+                        @php
+                            $galleryImages = is_string($aboutSection->gallery_images) 
+                                ? explode(',', $aboutSection->gallery_images) 
+                                : (is_array($aboutSection->gallery_images) ? $aboutSection->gallery_images : []);
+                        @endphp
+
+                        @foreach($galleryImages as $image)
+                            @php
+                                $imagePath = trim($image);
+                                $imageUrl = asset('storage/' . $imagePath);
+                            @endphp
+
+                            @if ($imageUrl)
+                                <div class="overflow-hidden rounded-xl shadow-lg">
+                                    <img src="{{ $imageUrl }}" 
+                                         class="w-full h-24 object-cover hover:scale-110 transition-transform duration-500 cursor-pointer"
+                                         onclick="document.getElementById('main-image-{{ $aboutSection->id }}').src = this.src" />
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
+                </div>
+
+                <!-- Content Section -->
+                <div class="w-full lg:w-1/2 space-y-8">
+                    <!-- Section Title -->
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-20 h-[2px] bg-[#8B4513]"></div>
+                            <span class="text-[#8B4513] font-semibold uppercase tracking-wider">About Us</span>
+                        </div>
+                        <h2 class="text-4xl lg:text-5xl font-bold text-[#1a1a2e] leading-tight">
+                            {{ $aboutSection->title ?? 'Default Title' }}
+                            <span class="relative">Resonates
+                                <div class="absolute bottom-0 left-0 w-full h-[8px] bg-[#8B4513]/20"></div>
+                            </span> Luxury
+                        </h2>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="space-y-6">
+                        <p class="text-lg text-gray-700 leading-relaxed">
+                            {{ $aboutSection->description ?? 'No description available.' }}
+                        </p>
+
+                        <!-- Feature List -->
+                        <div class="grid grid-cols-2 gap-6 py-6">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-full bg-[#8B4513]/10 flex items-center justify-center">
+                                    <i class="fas fa-map-marker-alt text-[#8B4513] text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-[#1a1a2e]">Prime Location</h4>
+                                    <p class="text-sm text-gray-600">Heart of the City</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-full bg-[#8B4513]/10 flex items-center justify-center">
+                                    <i class="fas fa-clock text-[#8B4513] text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-[#1a1a2e]">Quick Access</h4>
+                                    <p class="text-sm text-gray-600">{{ $aboutSection->quick_access ?? 'No available.' }}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CTA Section -->
+                        <div class="flex items-center gap-6 pt-4">
+                            <a href="{{route('gallery')}}"
+                               class="group relative px-8 py-4 bg-[#8B4513] text-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
+                                <div class="absolute inset-0 bg-[#6B3410] transform translate-y-full transition-transform duration-300 group-hover:translate-y-0"></div>
+                                <span class="relative z-10 font-semibold">Discover More</span>
+                            </a>
+                            <a href="{{route('gallery')}}"
+                               class="group flex items-center gap-3 text-[#1a1a2e] font-semibold hover:text-[#8B4513] transition-colors duration-300">
+                                <span>View Gallery</span>
+                                <i class="fas fa-arrow-right transform transition-transform duration-300 group-hover:translate-x-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
     </section>
+@endforeach
+
+
 
 
     <!-- Interactive Room Explorer -->

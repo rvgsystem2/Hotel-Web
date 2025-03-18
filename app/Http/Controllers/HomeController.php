@@ -1,19 +1,21 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\HeroSection;
-
+use App\Models\AboutSection;
+use App\Models\SmartService;
 
 class HomeController extends Controller
 {
-    
-      public function home()
-        {  
-            $heroSection = HeroSection::first() ?? new HeroSection(); 
-            return view('frontend.index', compact('heroSection'));
-        }
+    public function home()
+    {  
+        $heroSection = HeroSection::first() ?? new HeroSection(); 
+        $aboutSections = AboutSection::all(); 
+        return view('frontend.index', compact('heroSection', 'aboutSections'));
+    }  
+
+
         
  
     
