@@ -18,6 +18,17 @@ use App\Http\Controllers\RoomController;
 use App\Http\Controllers\RoomFacilityController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\GuestController;
+use App\Http\Controllers\PackageController;
+
+Route::prefix('backend/packages')->middleware('auth')->group(function () {
+    Route::get('/', [PackageController::class, 'index'])->name('backend.packages.index');
+    Route::get('create', [PackageController::class, 'create'])->name('backend.packages.create');
+    Route::post('store', [PackageController::class, 'store'])->name('backend.packages.store');
+    Route::get('edit/{package}', [PackageController::class, 'edit'])->name('backend.packages.edit');
+    Route::put('/{package}', [PackageController::class, 'update'])->name('backend.packages.update');
+    Route::delete('/{package}', [PackageController::class, 'destroy'])->name('backend.packages.destroy');
+});
+
 
 Route::prefix('backend/guests')->middleware('auth')->group(function () {
     Route::get('/', [GuestController::class, 'index'])->name('backend.guests.index');

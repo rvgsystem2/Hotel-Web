@@ -5,15 +5,31 @@ use Illuminate\Http\Request;
 use App\Models\HeroSection;
 use App\Models\AboutSection;
 use App\Models\SmartService;
+use App\Models\Package;
+use App\Models\InfoCard;
+use App\Models\HotelOffering;
+use App\Models\Testimonial;
+use App\Models\Contact;
 
 class HomeController extends Controller
 {
     public function home()
-    {  
-        $heroSection = HeroSection::first() ?? new HeroSection(); 
-        $aboutSections = AboutSection::all(); 
-        return view('frontend.index', compact('heroSection', 'aboutSections'));
-    }  
+{  
+    $heroSection = HeroSection::first() ?? new HeroSection(); 
+    $aboutSections = AboutSection::all(); 
+    $smartservices = SmartService::all() ?? collect();
+    $packages = Package::all();
+    $infoCards = InfoCard::take(4)->get();
+    $offerings = HotelOffering::take(8)->get();
+    $testimonials = Testimonial::orderBy('created_at', 'desc')->get(); 
+
+
+    return view('frontend.index', compact('testimonials','heroSection', 'aboutSections', 'smartservices', 'packages', 'infoCards', 'offerings'));
+}
+
+
+
+
 
 
         

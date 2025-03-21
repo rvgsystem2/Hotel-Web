@@ -20,7 +20,7 @@ class ContactController extends Controller
         $request->validate([
             'location' => 'required|string',
             'email' => 'required|email',
-            'phone' => 'required|digits:10',
+            'phone' => 'required|regex:/^\+?[0-9]{10,14}$/',
             'check_in_time' => 'required',
             'check_out_time' => 'required',
         ]);
@@ -38,7 +38,7 @@ class ContactController extends Controller
         $request->validate([
             'location' => 'required|string',
             'email' => 'required|email',
-            'phone' => 'required|digits:10',
+            'phone' => 'required|regex:/^\+?[0-9]{10,14}$/',
             'check_in_time' => 'required',
             'check_out_time' => 'required',
         ]);

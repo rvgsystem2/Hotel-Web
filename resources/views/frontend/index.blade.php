@@ -537,7 +537,7 @@
     </section>
 
     <!-- Smart Services Section -->
-    <section class="py-20 bg-gradient-to-b from-[#1a1a2e] via-[#16213e] to-[#1a1a2e] relative overflow-hidden">
+        <section class="py-20 bg-gradient-to-b from-[#1a1a2e] via-[#16213e] to-[#1a1a2e] relative overflow-hidden">
         <!-- Decorative Elements -->
         <div class="absolute inset-0">
             <div class="absolute top-0 right-0 w-72 h-72 bg-[#8B4513]/10 rounded-full blur-[100px]"></div>
@@ -698,7 +698,73 @@
                 </a>
             </div>
         </div>
-    </section>
+    </section>  
+      {{-- <section class="py-20 bg-gradient-to-b from-[#1a1a2e] via-[#16213e] to-[#1a1a2e] relative overflow-hidden">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-extrabold text-white mb-4">Smart Services</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-[#8B4513] to-[#D4A017] mx-auto mt-2 rounded-full"></div>
+                <p class="text-gray-300 text-lg max-w-2xl mx-auto mt-4">Experience the future of hospitality with our smart services</p>
+            </div>
+    
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                @foreach ($smartservices as $service)
+                <div class="bg-gradient-to-br from-[#1a1a2e] to-[#16213e] p-8 rounded-xl border border-white/10 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 relative">
+                    <div class="mb-6 relative mt-4">
+                        <div class="w-16 h-16 bg-[#8B4513]/20 rounded-xl flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                            <i class="{{ $service->icon }} text-[#D4A017] text-3xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-white mb-3">{{ $service->title }}</h3>
+                    <p class="text-gray-300 mb-5">{{ $service->description }}</p>
+                    @if ($service->badge_text)
+                    <ul class="mt-2 text-sm text-white list-disc pl-5">
+                        <li style="color: {{ $service->badge_color }};">{{ $service->badge_text }}</li>
+                    </ul>
+                    @endif
+                    <a href="#" class="inline-flex items-center text-[#D4A017] hover:text-white transition-colors duration-300 mt-3">
+                        {{ $service->cta_text ?? 'Learn More' }}
+                        <i class="fas fa-arrow-right ml-2 transform hover:translate-x-2 transition-transform duration-300"></i>
+                    </a>
+                </div>
+                @endforeach
+            </div>
+    
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-10 mt-16">
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-[#D4A017] mb-1">100+</div>
+                    <div class="text-gray-400">Smart Features</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-[#D4A017] mb-1">98%</div>
+                    <div class="text-gray-400">Guest Satisfaction</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-[#D4A017] mb-1">0.5s</div>
+                    <div class="text-gray-400">Response Time</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-[#D4A017] mb-1">24/7</div>
+                    <div class="text-gray-400">Support</div>
+                </div>
+            </div>
+    
+            <div class="mt-16 text-center">
+                <a href="#" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[#D4A017] to-[#8B4513] text-white font-semibold rounded-lg hover:from-[#8B4513] hover:to-[#D4A017] transition-all duration-300 transform hover:scale-105">
+                    Experience Smart Living
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>   --}}
+    
+    
+    
+    
+    
+
+
+
 
     <!-- Immersive Experiences Section -->
     <section class="py-20 bg-gradient-to-b from-white via-gray-50 to-white relative overflow-hidden">
@@ -780,7 +846,7 @@
             </div>
 
             <!-- Experience Stats -->
-            <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8">
+            {{-- <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8">
                 <div
                     class="text-center p-6 rounded-xl bg-white shadow-lg transition-all duration-500 ease-in-out hover:shadow-2xl hover:scale-105">
                     <div class="text-4xl font-bold text-[#8B4513] mb-2">5000+</div>
@@ -801,7 +867,16 @@
                     <div class="text-4xl font-bold text-[#8B4513] mb-2">4.9★</div>
                     <div class="text-gray-600">Guest Rating</div>
                 </div>
+            </div> --}}
+            <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8">
+                @foreach ($infoCards as $infoCard)
+                    <div class="text-center p-6 rounded-xl bg-white shadow-lg transition-all duration-500 ease-in-out hover:shadow-2xl hover:scale-105">
+                        <div class="text-4xl font-bold text-[#8B4513] mb-2">{{ $infoCard->value }}</div>
+                        <div class="text-gray-600">{{ $infoCard->title }}</div>
+                    </div>
+                @endforeach
             </div>
+            
 
             <!-- CTA Section -->
             <div class="mt-20 text-center">
@@ -816,7 +891,7 @@
 
 
     <!-- Our Signature Offerings -->
-    <section class="py-20 bg-[#f7f7f7]">
+    {{-- <section class="py-20 bg-[#f7f7f7]">
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-4xl font-bold text-[#1a1a2e] mb-4">
                 Our Signature Offerings
@@ -912,7 +987,30 @@
                 </div>
             </div>
         </div>
+    </section> --}}
+
+    <section class="py-20 bg-[#f7f7f7]">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold text-[#1a1a2e] mb-4">Our Signature Offerings</h2>
+            <div class="w-24 h-1 bg-gradient-to-r from-[#8B4513] to-[#D4A017] mx-auto mt-4 rounded-full"></div>
+            <p class="text-lg text-gray-700 mb-16 mt-4">
+                Step into an oasis of elegance and warmth at Hotel Krinoscco, where luxury meets tradition to redefine your unforgettable experience.
+            </p>
+    
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                @foreach ($offerings as $offering)
+                    <div class="offering-item p-6 bg-white rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105">
+                        <div class="bg-[#8B4513] p-4 rounded-full mb-4 mx-auto">
+                            <i class="{{ $offering->icon }} text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-[#1a1a2e] mb-2">{{ $offering->title }}</h3>
+                        <p class="text-gray-600">{{ Str::limit($offering->short_description, 100) }}</p>
+                    </div>
+                @endforeach
+            </div>
+        </div>
     </section>
+    
 
 
     <!-- Real-time Availability Section -->
@@ -1055,7 +1153,7 @@
     </section>
 
     <!-- Our Packages Section -->
-    <section class="py-20 bg-gradient-to-b from-[#1a1a2e] via-[#16213e] to-[#1a1a2e]">
+    {{-- <section class="py-20 bg-gradient-to-b from-[#1a1a2e] via-[#16213e] to-[#1a1a2e]">
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-5xl font-bold text-white mb-12">
                 Our Packages
@@ -1097,7 +1195,40 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
+
+    <!-- Our Packages Section -->
+<section class="py-20 bg-gradient-to-b from-[#1a1a2e] via-[#16213e] to-[#1a1a2e]">
+    <div class="container mx-auto px-4 text-center">
+        <h2 class="text-5xl font-bold text-white mb-12">
+            Our Packages
+            <div class="w-24 h-1 bg-gradient-to-r from-[#8B4513] to-[#D4A017] mx-auto mt-4 rounded-full"></div>
+        </h2>
+
+        <p class="text-lg text-gray-300 mb-12">
+            Array of unique experiences to enjoy throughout your event, Experiences
+            by Krinoscco serves as a concierge service for you.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            @foreach ($packages as $package)
+                <div class="bg-[#16213e] p-8 rounded-xl shadow-2xl border border-white/5 overflow-hidden">
+                    <div class="relative mb-6">
+                        <img src="{{ asset('storage/' . $package->image) }}" alt="{{ $package->title }}"
+                            class="w-full h-48 object-cover transition-transform duration-500 hover:scale-105 rounded-lg">
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">{{ $package->title }}</h3>
+                    <p class="text-gray-300 mb-6">{{ $package->description }}</p>
+                    <a href="{{ $package->link ?? '#' }}"
+                        class="bg-[#8B4513] text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-[#6B3410] transition-all duration-300 transform hover:scale-105">
+                        Know More
+                    </a>
+                </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+
 
 
     <!-- Digital Art Gallery -->
@@ -1143,7 +1274,7 @@
 
 
     <!-- What Our Guests Say -->
-    <section class="py-20 bg-gradient-to-b from-[#1a1a2e] via-[#16213e] to-[#1a1a2e] relative overflow-hidden">
+    {{-- <section class="py-20 bg-gradient-to-b from-[#1a1a2e] via-[#16213e] to-[#1a1a2e] relative overflow-hidden">
         <!-- Decorative Elements -->
         <div class="absolute top-0 left-0 w-96 h-96 bg-[#8B4513]/10 rounded-full blur-[100px]"></div>
         <div class="absolute bottom-0 right-0 w-96 h-96 bg-[#8B4513]/10 rounded-full blur-[100px]"></div>
@@ -1241,7 +1372,53 @@
                 </div>
             </div>
         </div>
+    </section> --}}
+    <section class="py-20 bg-gradient-to-b from-[#1a1a2e] via-[#16213e] to-[#1a1a2e] relative overflow-hidden">
+        <!-- Decorative Elements -->
+        <div class="absolute top-0 left-0 w-96 h-96 bg-[#8B4513]/10 rounded-full blur-[100px]"></div>
+        <div class="absolute bottom-0 right-0 w-96 h-96 bg-[#8B4513]/10 rounded-full blur-[100px]"></div>
+    
+        <div class="container mx-auto px-4 relative z-10">
+            <!-- Section Header -->
+            <h2 class="text-5xl font-bold text-white text-center mb-12">
+                What Our Guests Say
+                <div class="w-24 h-1 bg-gradient-to-r from-[#8B4513] to-[#D4A017] mx-auto mt-4 rounded-full"></div>
+            </h2>
+    
+            <!-- Swiper Slider -->
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    @foreach ($testimonials as $testimonial)
+                        <div class="swiper-slide bg-[#16213e] p-8 rounded-xl shadow-2xl border border-white/5 h-full flex flex-col">
+                            <h4 class="text-xl font-bold text-white">{{ $testimonial->name }}</h4>
+                            <span class="text-sm text-gray-400">{{ $testimonial->role }}</span>
+                            <p class="text-gray-300 flex-grow mt-4">
+                                "{{ Str::limit($testimonial->review, 150) }}"
+                            </p>
+                            <div class="mt-6 flex space-x-1">
+                                @for ($i = 0; $i < $testimonial->rating; $i++)
+                                    <i class="fas fa-star text-[#D4A017]"></i>
+                                @endfor
+                                @for ($i = $testimonial->rating; $i < 5; $i++)
+                                    <i class="fas fa-star text-gray-500"></i>
+                                @endfor
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+    
+                <!-- Pagination and Navigation -->
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev custom-button-prev">
+                    <span class="material-icons">arrow_back_ios</span>
+                </div>
+                <div class="swiper-button-next custom-button-next">
+                    <span class="material-icons">arrow_forward_ios</span>
+                </div>
+            </div>
+        </div>
     </section>
+    
 
 
     <!-- Add required CSS -->

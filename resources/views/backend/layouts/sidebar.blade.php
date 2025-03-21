@@ -99,6 +99,12 @@
                     </a>
                   </li>
                   <li class="nav-item">
+                    <a href="{{route('backend.packages.index')}}" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Packages</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
                     <a href="{{route('backend.info_cards.index')}}" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Info Cards</p>

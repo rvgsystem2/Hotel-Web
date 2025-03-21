@@ -19,7 +19,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Phone</label>
-                    <input type="text" name="phone" class="form-control" value="{{ $contact->phone }}" required maxlength="10">
+                    <input type="text" name="phone" class="form-control" value="{{ $contact->phone }}" required maxlength="15" pattern="\+?[0-9]{10,14}" title="Phone number must be 10-14 digits and may start with +">
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Check In Time</label>
