@@ -1151,6 +1151,39 @@
             </div>
         </div>
     </section>
+    {{-- <section class="py-20 bg-gradient-to-b from-[#1a1a2e] via-[#16213e] to-[#1a1a2e]">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-base md:text-5xl font-bold text-white mb-12">
+                Our Accommodation
+                <div class="w-24 h-1 bg-gradient-to-r from-[#8B4513] to-[#D4A017] mx-auto mt-4 rounded-full"></div>
+            </h2>
+    
+            <p class="text-lg text-gray-300 mb-12">
+                Whether traveling for business or vacation, Hotel Krinoscco room sizes
+                are ideal. Classically styled with carefully chosen contemporary designed rooms with round-the-clock
+                services.
+            </p>
+    
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                @foreach ($roomTypes as $roomType)
+                    <div class="bg-[#16213e] p-8 rounded-xl shadow-2xl border border-white/5 overflow-hidden">
+                        <div class="relative mb-6">
+                            <img src="{{ asset('storage/' . explode(',', $roomType->images)[0]) }}" 
+                                 alt="{{ $roomType->name }}" 
+                                 class="w-full h-48 object-cover transition-transform duration-500 hover:scale-105 rounded-lg">
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4">{{ $roomType->name }}</h3>
+                        <p class="text-gray-300 mb-6">{{ $roomType->description }}</p>
+                        <a href="#"
+                            class="bg-[#8B4513] text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-[#6B3410] transition-all duration-300 transform hover:scale-105">
+                            Know More
+                        </a>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section> --}}
+    
 
     <!-- Our Packages Section -->
     {{-- <section class="py-20 bg-gradient-to-b from-[#1a1a2e] via-[#16213e] to-[#1a1a2e]">
@@ -1541,7 +1574,7 @@
             <!-- Grid Section -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
                 <!-- Contact Information -->
-                <div class="space-y-8">
+                {{-- <div class="space-y-8">
                     <!-- Single Info -->
                     <div class="flex items-start space-x-4">
                         <div class="flex-shrink-0">
@@ -1583,7 +1616,53 @@
                             <p class="text-gray-600">Check Out: 11:00 AM</p>
                         </div>
                     </div>
+                </div> --}}
+                <div class="space-y-8">
+                    @foreach($contacts as $contact)
+                    <!-- Single Info -->
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0">
+                            <span class="material-icons text-[#8B4513] text-4xl">location_on</span>
+                        </div>
+                        <div>  
+                            <h4 class="font-semibold text-gray-800 text-lg">Our Location</h4>
+                            <p class="text-gray-600">{{ $contact->location }}</p>
+                        </div>
+                    </div>
+                    <!-- Single Info -->
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0">
+                            <span class="material-icons text-[#8B4513] text-4xl">email</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800 text-lg">Email Us</h4>
+                            <p class="text-gray-600">{{ $contact->email }}</p>
+                        </div>
+                    </div>
+                    <!-- Single Info -->
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0">
+                            <span class="material-icons text-[#8B4513] text-4xl">phone</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800 text-lg">Call Us</h4>
+                            <p class="text-gray-600">{{ $contact->phone }}</p>
+                        </div>
+                    </div>
+                    <!-- Timing Info -->
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0">
+                            <span class="material-icons text-[#8B4513] text-4xl">access_time</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800 text-lg">Timing</h4>
+                            <p class="text-gray-600">Check In: {{ date('h:i A', strtotime($contact->check_in_time)) }}</p>
+                            <p class="text-gray-600">Check Out: {{ date('h:i A', strtotime($contact->check_out_time)) }}</p>
+                        </div>
+                    </div>
+                    @endforeach
                 </div>
+                
 
                 <!-- Contact Form -->
                 <form action="#" method="POST"
@@ -1631,81 +1710,43 @@
     <!-- FAQ Section -->
     <section id="faq" class="py-20 bg-gradient-to-b from-[#F8F8F8] to-[#EAEAEA]">
         <div class="container mx-auto px-6">
-
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-extrabold text-gray-900"> Frequently Asked Questions</h2>
+                <h2 class="text-4xl font-extrabold text-gray-900">Frequently Asked Questions</h2>
                 <div class="w-24 h-1 bg-gradient-to-r from-[#8B4513] to-[#D4A017] mx-auto mt-4 rounded-full"></div>
             </div>
+            
             <!-- FAQ Accordion -->
             <div class="space-y-8">
-                <div
-                    class="faq-item bg-white rounded-lg shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl">
-                    <button
-                        class="faq-toggle w-full text-left p-6 font-medium text-gray-800 hover:bg-[#F4F4F4] focus:outline-none focus:ring-2 focus:ring-[#8B4513] flex justify-between items-center">
-                        <span class="text-lg font-semibold">What is the check-in and check-out time?</span>
-                        <svg class="w-6 h-6 text-[#8B4513] transform transition-transform duration-300 rotate-0 faq-icon"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
-                            </path>
-                        </svg>
-                    </button>
-                    <div class="faq-content p-6 text-gray-600 hidden">
-                        <p>Check-in is from 1:00 PM, and check-out is by 11:00 AM.</p>
+                @foreach ($faqs as $faq)
+                    <div class="faq-item bg-white rounded-lg shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl">
+                        <button class="faq-toggle w-full text-left p-6 font-medium text-gray-800 hover:bg-[#F4F4F4] focus:outline-none focus:ring-2 focus:ring-[#8B4513] flex justify-between items-center">
+                            <span class="text-lg font-semibold">{{ $faq->question }}</span>
+                            <svg class="w-6 h-6 text-[#8B4513] transform transition-transform duration-300 rotate-0 faq-icon"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="faq-content p-6 text-gray-600 hidden">
+                            <p>{{ $faq->answer }}</p>
+                        </div>
                     </div>
-                </div>
-
-                <div
-                    class="faq-item bg-white rounded-lg shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl">
-                    <button
-                        class="faq-toggle w-full text-left p-6 font-medium text-gray-800 hover:bg-[#F4F4F4] focus:outline-none focus:ring-2 focus:ring-[#8B4513] flex justify-between items-center">
-                        <span class="text-lg font-semibold">Do you offer room service?</span>
-                        <svg class="w-6 h-6 text-[#8B4513] transform transition-transform duration-300 rotate-0 faq-icon"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
-                            </path>
-                        </svg>
-                    </button>
-                    <div class="faq-content p-6 text-gray-600 hidden">
-                        <p>Yes, we offer room service 24/7. You can place an order through our in-room menu.</p>
-                    </div>
-                </div>
-
-                <div
-                    class="faq-item bg-white rounded-lg shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl">
-                    <button
-                        class="faq-toggle w-full text-left p-6 font-medium text-gray-800 hover:bg-[#F4F4F4] focus:outline-none focus:ring-2 focus:ring-[#8B4513] flex justify-between items-center">
-                        <span class="text-lg font-semibold">Can I cancel my booking?</span>
-                        <svg class="w-6 h-6 text-[#8B4513] transform transition-transform duration-300 rotate-0 faq-icon"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
-                            </path>
-                        </svg>
-                    </button>
-                    <div class="faq-content p-6 text-gray-600 hidden">
-                        <p>Yes, cancellations are allowed with a 24-hour notice. Please check the terms for full details.
-                        </p>
-                    </div>
-                </div>
-
-                <div
-                    class="faq-item bg-white rounded-lg shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl">
-                    <button
-                        class="faq-toggle w-full text-left p-6 font-medium text-gray-800 hover:bg-[#F4F4F4] focus:outline-none focus:ring-2 focus:ring-[#8B4513] flex justify-between items-center">
-                        <span class="text-lg font-semibold">Do you have a shuttle service?</span>
-                        <svg class="w-6 h-6 text-[#8B4513] transform transition-transform duration-300 rotate-0 faq-icon"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
-                            </path>
-                        </svg>
-                    </button>
-                    <div class="faq-content p-6 text-gray-600 hidden">
-                        <p>Yes, we provide shuttle service to and from the airport. Please contact reception for bookings.
-                        </p>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll(".faq-toggle").forEach(button => {
+                button.addEventListener("click", function () {
+                    let content = this.nextElementSibling;
+                    content.classList.toggle("hidden");
+                    this.querySelector(".faq-icon").classList.toggle("rotate-180");
+                });
+            });
+        });
+    </script>
+    
 
     <!--About Us JavaScript for Image Change -->
     <script>

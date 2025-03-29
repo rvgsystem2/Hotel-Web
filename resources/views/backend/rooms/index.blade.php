@@ -6,7 +6,7 @@
         <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
             <h5 class="mb-0">Rooms</h5>
             <div class="ms-auto">
-                <a href="{{ route('backend.rooms.create') }}" class="btn btn-dark btn-sm">Add New Room</a>
+                <a href="{{ route('backend.rooms.create') }}" class="btn btn-dark btn-sm">Add New</a>
             </div>
         </div>
         <div class="card-body">
@@ -17,32 +17,42 @@
                     <table class="table table-hover align-middle">
                         <thead class="table-light">
                             <tr>
-                                <th>Room Number</th>
-                                <th>Hotel</th>
-                                <th>Type</th>
+                                <th>Images</th>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Location</th>
+                                <th>Distance (km)</th>
+                                <th>Link</th>
+                                <th>Room Type</th>
                                 <th>Price</th>
-                                <th>Images</th> <!-- Added Images Column -->
-                                <th>Status</th>
                                 <th class="text-center">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($rooms as $room)
                             <tr>
-                                <td>{{ $room->room_number }}</td>
-                                <td>{{ $room->hotel->name }}</td>
-                                <td>{{ $room->roomType->name ?? 'N/A' }}</td> <!-- Fixed Room Type Reference -->
-                                <td>${{ number_format($room->price, 2) }}</td>
                                 <td>
-                                    @foreach(explode(',', $room->image) as $img)
-                                        <img src="{{ asset('storage/' . $img) }}" width="50" height="50" class="rounded" alt="Room Image">
-                                    @endforeach
+                                    @if($room->images)
+                                        @foreach(explode(',', $room->images) as $image)
+                                            <img src="{{ asset('storage/' . $image) }}" alt="Room Image" width="50" height="50" class="rounded me-1">
+                                        @endforeach
+                                    @else
+                                        <span>No Image</span>
+                                    @endif
                                 </td>
+                                <td>{{ $room->title }}</td>
+                                <td>{{ Str::limit($room->description, 50) }}</td>
+                                <td>{{ $room->location }}</td>
+                                <td>{{ $room->distance_from_station ?? 'N/A' }}</td>
                                 <td>
-                                    <span class="badge bg-{{ $room->status == 'available' ? 'success' : ($room->status == 'booked' ? 'warning' : 'danger') }}">
-                                        {{ ucfirst($room->status) }}
-                                    </span>
+                                    @if($room->link)
+                                        <a href="{{ $room->link }}" target="_blank">View</a>
+                                    @else
+                                        N/A
+                                    @endif
                                 </td>
+                                <td>{{ $room->roomType->name }}</td>
+                                <td>{{ $room->price }}</td>
                                 <td class="text-center">
                                     <a href="{{ route('backend.rooms.edit', $room->id) }}" class="btn btn-secondary btn-sm">Edit</a>
                                     <form action="{{ route('backend.rooms.destroy', $room->id) }}" method="POST" class="d-inline delete-form">

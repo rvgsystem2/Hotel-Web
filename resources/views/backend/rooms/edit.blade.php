@@ -8,29 +8,18 @@
         </div>
         <div class="card-body">
             <form action="{{ route('backend.rooms.update', $room->id) }}" method="POST" enctype="multipart/form-data">
-                @csrf 
+                @csrf
                 @method('PUT')
 
                 <div class="mb-3">
-                    <label class="form-label">Room Number</label>
-                    <input type="text" name="room_number" class="form-control" value="{{ $room->room_number }}" required>
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Hotel</label>
-                    <select name="hotel_id" class="form-control" required>
-                        @foreach ($hotels as $hotel)
-                            <option value="{{ $hotel->id }}" {{ $room->hotel_id == $hotel->id ? 'selected' : '' }}>
-                                {{ $hotel->name }}
-                            </option>
-                        @endforeach
-                    </select>
+                    <label class="form-label">Room Title</label>
+                    <input type="text" name="title" class="form-control" value="{{ $room->title }}" required>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Room Type</label>
                     <select name="room_type_id" class="form-control" required>
-                        @foreach ($roomTypes as $roomType)
+                        @foreach($roomTypes as $roomType)
                             <option value="{{ $roomType->id }}" {{ $room->room_type_id == $roomType->id ? 'selected' : '' }}>
                                 {{ $roomType->name }}
                             </option>
@@ -39,41 +28,49 @@
                 </div>
 
                 <div class="mb-3">
+                    <label class="form-label">Description</label>
+                    <textarea name="description" class="form-control" rows="3">{{ $room->description }}</textarea>
+                </div>
+
+                <div class="mb-3">
                     <label class="form-label">Price</label>
-                    <input type="number" name="price" class="form-control" value="{{ $room->price }}" required>
+                    <input type="number" name="price" class="form-control" step="0.01" value="{{ $room->price }}" required>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">Status</label>
-                    <select name="status" class="form-control" required>
-                        <option value="available" {{ $room->status == 'available' ? 'selected' : '' }}>Available</option>
-                        <option value="booked" {{ $room->status == 'booked' ? 'selected' : '' }}>Booked</option>
-                        <option value="maintenance" {{ $room->status == 'maintenance' ? 'selected' : '' }}>Maintenance</option>
-                    </select>
+                    <label class="form-label">Location</label>
+                    <input type="text" name="location" class="form-control" value="{{ $room->location }}" required>
                 </div>
 
-                <!-- Existing Room Images -->
                 <div class="mb-3">
-                    <label class="form-label">Current Images</label>
-                    <div class="d-flex flex-wrap gap-2">
-                        @foreach (explode(',', $room->image) as $image)
-                            @if ($image)
-                                <div class="position-relative">
-                                    <img src="{{ asset('storage/' . $image) }}" class="img-thumbnail" width="100" height="100">
-                                    <input type="checkbox" name="remove_images[]" value="{{ $image }}"> Remove
-                                </div>
-                            @endif
-                        @endforeach
+                    <label class="form-label">Distance from Station (in minutes)</label>
+                    <input type="number" name="distance_from_station" class="form-control" value="{{ $room->distance_from_station }}">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Link (Optional)</label>
+                    <input type="url" name="link" class="form-control" value="{{ $room->link }}">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Existing Images</label>
+                    <div>
+                        @if($room->images)
+                            @foreach(explode(',', $room->images) as $image)
+                                <img src="{{ asset('storage/' . $image) }}" width="50" height="50" class="rounded me-1">
+                            @endforeach
+                        @else
+                            <span>No Image</span>
+                        @endif
                     </div>
                 </div>
 
-                <!-- New Image Upload -->
                 <div class="mb-3">
                     <label class="form-label">Upload New Images</label>
-                    <input type="file" name="image[]" class="form-control" multiple accept="image/*">
+                    <input type="file" name="images[]" class="form-control" multiple>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Update</button>
+                <button type="submit" class="btn btn-success">Update</button>
             </form>
         </div>
     </div>

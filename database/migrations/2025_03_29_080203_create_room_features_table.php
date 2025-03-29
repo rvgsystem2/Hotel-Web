@@ -6,16 +6,17 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up()
     {
-        Schema::create('room_facilities', function (Blueprint $table) {
+        Schema::create('room_features', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('room_id')->constrained()->onDelete('cascade');
-            $table->string('facility_name');
+            $table->foreignId('room_type_id')->constrained('room_types')->onDelete('cascade');
+            $table->string('feature');
+            $table->string('short_description')->nullable();
             $table->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('room_facilities');
+        Schema::dropIfExists('room_features');
     }
 };

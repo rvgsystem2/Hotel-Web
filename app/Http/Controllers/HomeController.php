@@ -10,32 +10,32 @@ use App\Models\InfoCard;
 use App\Models\HotelOffering;
 use App\Models\Testimonial;
 use App\Models\Contact;
+use App\Models\Faq;
+use App\Models\RoomType;
 
 class HomeController extends Controller
 {
     public function home()
-{  
-    $heroSection = HeroSection::first() ?? new HeroSection(); 
-    $aboutSections = AboutSection::all(); 
-    $smartservices = SmartService::all() ?? collect();
-    $packages = Package::all();
-    $infoCards = InfoCard::take(4)->get();
-    $offerings = HotelOffering::take(8)->get();
-    $testimonials = Testimonial::orderBy('created_at', 'desc')->get(); 
-
-
-    return view('frontend.index', compact('testimonials','heroSection', 'aboutSections', 'smartservices', 'packages', 'infoCards', 'offerings'));
-}
-
-
-
-
-
-
-        
- 
+    {  
+        $heroSection = HeroSection::first() ?? new HeroSection(); 
+        $aboutSections = AboutSection::all(); 
+        $smartservices = SmartService::all() ?? collect();
+        $packages = Package::all();
+        $infoCards = InfoCard::take(4)->get();
+        $offerings = HotelOffering::take(8)->get();
+        $contacts = Contact::all();
+        $faqs = Faq::all(); 
+        // $roomTypes = RoomType::all(); 
+        $testimonials = Testimonial::orderBy('created_at', 'desc')->get(); 
+    
+        return view('frontend.index', compact(
+            'testimonials', 'heroSection', 'aboutSections', 'smartservices', 
+            'packages', 'infoCards', 'offerings', 'contacts', 'faqs' 
+        ));
+    }
     
 
+    
     public function about()
     {
         return view('frontend.about');

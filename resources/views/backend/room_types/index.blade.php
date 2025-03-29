@@ -17,28 +17,24 @@
                     <table class="table table-hover align-middle">
                         <thead class="table-light">
                             <tr>
-                                <th>ID</th>
+                                <th>Image</th>
                                 <th>Name</th>
                                 <th>Description</th>
-                                <th>Images</th>
                                 <th class="text-center">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($roomTypes as $roomType)
                             <tr>
-                                <td>{{ $roomType->id }}</td>
-                                <td>{{ $roomType->name }}</td>
-                                <td>{{ $roomType->description }}</td>
                                 <td>
-                                    @if($roomType->images)
-                                        @foreach(explode(',', $roomType->images) as $image)
-                                            <img src="{{ asset('storage/' . $image) }}" width="50" height="50" class="rounded">
-                                        @endforeach
+                                    @if($roomType->image)
+                                        <img src="{{ asset('storage/' . $roomType->image) }}" alt="Room Type Image" width="50" height="50" class="rounded">
                                     @else
-                                        No Images
+                                        <span>No Image</span>
                                     @endif
                                 </td>
+                                <td>{{ $roomType->name }}</td>
+                                <td>{{ $roomType->description }}</td>
                                 <td class="text-center">
                                     <a href="{{ route('backend.room_types.edit', $roomType->id) }}" class="btn btn-secondary btn-sm">Edit</a>
                                     <form action="{{ route('backend.room_types.destroy', $roomType->id) }}" method="POST" class="d-inline delete-form">

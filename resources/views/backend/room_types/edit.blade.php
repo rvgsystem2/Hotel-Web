@@ -11,31 +11,23 @@
                 @csrf @method('PUT')
 
                 <div class="mb-3">
-                    <label class="form-label">Room Type Name</label>
+                    <label class="form-label">Name</label>
                     <input type="text" name="name" class="form-control" value="{{ $roomType->name }}" required>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Description</label>
-                    <textarea name="description" class="form-control" rows="4" required>{{ $roomType->description }}</textarea>
+                    <textarea name="description" class="form-control" rows="3">{{ $roomType->description }}</textarea>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">Current Images</label>
-                    <div>
-                        @if($roomType->images)
-                            @foreach(explode(',', $roomType->images) as $image)
-                                <img src="{{ asset('storage/' . $image) }}" width="50" height="50" class="rounded me-2">
-                            @endforeach
-                        @else
-                            <p>No images uploaded</p>
-                        @endif
-                    </div>
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Upload New Images (Optional)</label>
-                    <input type="file" name="images[]" class="form-control" multiple>
+                    <label class="form-label">Image</label>
+                    <input type="file" name="image" class="form-control">
+                    @if($roomType->image)
+                        <div class="mt-2">
+                            <img src="{{ asset('storage/' . $roomType->image) }}" alt="Room Type Image" width="100">
+                        </div>
+                    @endif
                 </div>
 
                 <button type="submit" class="btn btn-primary">Update</button>

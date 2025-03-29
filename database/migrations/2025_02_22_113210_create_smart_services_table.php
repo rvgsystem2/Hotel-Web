@@ -15,10 +15,7 @@ return new class extends Migration {
             $table->string('image');
             $table->string('badge_text')->nullable();
             $table->string('badge_color')->nullable();
-            // $table->json('features');
             $table->string('cta_text')->nullable();
-            // $table->string('cta_link')->nullable();
-            // $table->foreignId('category_id')->nullable()->constrained('service_categories')->onDelete('cascade');
             $table->timestamps();
         });
     }

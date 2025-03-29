@@ -15,10 +15,24 @@ use App\Http\Controllers\FaqController;
 use App\Http\Controllers\RoomTypeController;
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\RoomController;
-use App\Http\Controllers\RoomFacilityController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\PackageController;
+
+
+use App\Http\Controllers\RoomFeatureController;
+
+Route::prefix('backend/room-features')->middleware('auth')->group(function () {
+    Route::get('', [RoomFeatureController::class, 'index'])->name('backend.room_features.index');
+    Route::get('create', [RoomFeatureController::class, 'create'])->name('backend.room_features.create');
+    Route::post('store', [RoomFeatureController::class, 'store'])->name('backend.room_features.store');
+    Route::get('edit/{roomFeature}', [RoomFeatureController::class, 'edit'])->name('backend.room_features.edit');
+    Route::put('update/{roomFeature}', [RoomFeatureController::class, 'update'])->name('backend.room_features.update');
+    Route::delete('delete/{roomFeature}', [RoomFeatureController::class, 'destroy'])->name('backend.room_features.destroy');
+});
+
+
+
 
 Route::prefix('backend/packages')->middleware('auth')->group(function () {
     Route::get('/', [PackageController::class, 'index'])->name('backend.packages.index');
@@ -41,25 +55,19 @@ Route::prefix('backend/guests')->middleware('auth')->group(function () {
 });
 
 
-Route::prefix('backend/bookings')->middleware('auth')->group(function () {
-    Route::get('/', [BookingController::class, 'index'])->name('backend.bookings.index');
-    Route::get('/create', [BookingController::class, 'create'])->name('backend.bookings.create');
-    Route::post('/store', [BookingController::class, 'store'])->name('backend.bookings.store');
-    Route::get('/edit/{booking}', [BookingController::class, 'edit'])->name('backend.bookings.edit');
-    Route::put('/update/{booking}', [BookingController::class, 'update'])->name('backend.bookings.update');
-    Route::delete('/delete/{booking}', [BookingController::class, 'destroy'])->name('backend.bookings.destroy');
-});
+// Route::prefix('backend/bookings')->middleware('auth')->group(function () {
+//     Route::get('/', [BookingController::class, 'index'])->name('backend.bookings.index');
+//     Route::get('/create', [BookingController::class, 'create'])->name('backend.bookings.create');
+//     Route::post('/store', [BookingController::class, 'store'])->name('backend.bookings.store');
+//     Route::get('/edit/{booking}', [BookingController::class, 'edit'])->name('backend.bookings.edit');
+//     Route::put('/update/{booking}', [BookingController::class, 'update'])->name('backend.bookings.update');
+//     Route::delete('/delete/{booking}', [BookingController::class, 'destroy'])->name('backend.bookings.destroy');
+// });
 
 
 
-Route::prefix('backend/room_facilities')->middleware('auth')->group(function () {
-    Route::get('/', [RoomFacilityController::class, 'index'])->name('backend.room_facilities.index');
-    Route::get('create', [RoomFacilityController::class, 'create'])->name('backend.room_facilities.create');
-    Route::post('store', [RoomFacilityController::class, 'store'])->name('backend.room_facilities.store');
-    Route::get('edit/{roomFacility}', [RoomFacilityController::class, 'edit'])->name('backend.room_facilities.edit');
-    Route::put('/{roomFacility}', [RoomFacilityController::class, 'update'])->name('backend.room_facilities.update');
-    Route::delete('delete/{roomFacility}', [RoomFacilityController::class, 'destroy'])->name('backend.room_facilities.destroy');
-});
+
+
 
 
 

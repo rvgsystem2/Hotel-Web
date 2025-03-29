@@ -9,20 +9,17 @@
         <div class="card-body">
             <form action="{{ route('backend.room_types.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                
                 <div class="mb-3">
                     <label class="form-label">Room Type Name</label>
                     <input type="text" name="name" class="form-control" required>
                 </div>
-
                 <div class="mb-3">
                     <label class="form-label">Description</label>
-                    <textarea name="description" class="form-control" rows="4" required></textarea>
+                    <textarea name="description" class="form-control" rows="3"></textarea>
                 </div>
-
                 <div class="mb-3">
-                    <label class="form-label">Upload Images</label>
-                    <input type="file" name="images[]" class="form-control" multiple>
+                    <label class="form-label">Image</label>
+                    <input type="file" name="image" class="form-control">
                 </div>
                 
                 <button type="submit" class="btn btn-success">Save</button>
